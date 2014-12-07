@@ -1,10 +1,13 @@
 package com.github.liosha2007.android.adventuresofpokemons;
 
 import com.github.liosha2007.android.adventuresofpokemons.manager.ResourcesManager;
+import com.github.liosha2007.android.adventuresofpokemons.manager.SceneManager;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.LimitedFPSEngine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.WakeLockOptions;
@@ -18,8 +21,8 @@ import org.andengine.ui.activity.BaseGameActivity;
  */
 public class GameActivity extends BaseGameActivity {
     public static final int FRAMES_PER_SECOND = 60;
-    public static final int CAMERA_WIDTH = 800;
-    public static final int CAMERA_HEIGHT = 480;
+    public static final int CAMERA_WIDTH = 1280;
+    public static final int CAMERA_HEIGHT = 720;
     private Camera camera;
     private ResourcesManager resourcesManager;
 
@@ -46,11 +49,22 @@ public class GameActivity extends BaseGameActivity {
 
     @Override
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-
+        SceneManager.getInstance().createSplashScene(pOnCreateSceneCallback);
     }
 
     @Override
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
-
+        mEngine.registerUpdateHandler(new TimerHandler(2f, new ITimerCallback()
+        {
+            public void onTimePassed(final TimerHandler pTimerHandler)
+            {
+                mEngine.unregisterUpdateHandler(pTimerHandler);
+                // load menu resources, create menu scene
+                // set menu scene using scene manager
+                // disposeSplashScene();
+                // READ NEXT ARTICLE FOR THIS PART.
+            }
+        }));
+        pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
 }

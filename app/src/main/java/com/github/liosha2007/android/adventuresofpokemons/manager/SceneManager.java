@@ -1,8 +1,10 @@
 package com.github.liosha2007.android.adventuresofpokemons.manager;
 
 import com.github.liosha2007.android.adventuresofpokemons.base.BaseScene;
+import com.github.liosha2007.android.adventuresofpokemons.scene.SplashScene;
 
 import org.andengine.engine.Engine;
+import org.andengine.ui.IGameInterface;
 
 /**
  * @author Aleksey Permyakov (07.12.2014)
@@ -63,6 +65,21 @@ public class SceneManager {
             default:
                 break;
         }
+    }
+
+    public void createSplashScene(IGameInterface.OnCreateSceneCallback pOnCreateSceneCallback)
+    {
+        ResourcesManager.getInstance().loadSplashScreen();
+        splashScene = new SplashScene();
+        currentScene = splashScene;
+        pOnCreateSceneCallback.onCreateSceneFinished(splashScene);
+    }
+
+    private void disposeSplashScene()
+    {
+        ResourcesManager.getInstance().unloadSplashScreen();
+        splashScene.disposeScene();
+        splashScene = null;
     }
 
     //---------------------------------------------

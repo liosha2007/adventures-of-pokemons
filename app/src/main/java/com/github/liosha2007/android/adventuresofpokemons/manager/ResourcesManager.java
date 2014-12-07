@@ -4,7 +4,14 @@ import com.github.liosha2007.android.adventuresofpokemons.GameActivity;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+
+import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_HEIGHT;
+import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_WIDTH;
 
 /**
  * Created by liosha on 07.12.2014.
@@ -16,6 +23,8 @@ public class ResourcesManager {
     public GameActivity activity;
     public Camera camera;
     public VertexBufferObjectManager vbom;
+    private BitmapTextureAtlas splashTextureAtlas;
+    public TextureRegion splash_region;
 
     //---------------------------------------------
     // TEXTURES & TEXTURE REGIONS
@@ -65,12 +74,16 @@ public class ResourcesManager {
 
     public void loadSplashScreen()
     {
-
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        splashTextureAtlas = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR);
+        splash_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(splashTextureAtlas, activity, "splash.png", 0, 0);
+        splashTextureAtlas.load();
     }
 
     public void unloadSplashScreen()
     {
-
+        splashTextureAtlas.unload();
+        splash_region = null;
     }
 
     /**
