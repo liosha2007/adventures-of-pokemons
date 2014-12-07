@@ -1,14 +1,37 @@
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+# System:
+Thumbs.db
 .DS_Store
-/build
-/.idea
-/*.iml
-/app/libs/andengine/*.iml
-/app/libs/andenginebox2d/*.iml
-/app/libs/andengine/build
-/app/libs/andenginebox2d/build
-/app/libs/tmxtiledmap/build
-/app/*.iml
+*.swp
+*~
+Desktop.ini
+
+# Version Control Systems:
+.svn
+CVS
+.hg
+.bzr
+
+# Android:
+local.properties
+proguard/**
+**/target/**
+bin/**
+**/build/**
+obj/**
+doc/**
+gen/**
+gdb.setup
+gdbserver
+.gradle
+
+# Eclipse:
+.settings
+
+# IntelliJ / Android Studio:
+idea/workspace.xml
+idea/tasks.xml
+*.iml
+.idea
+
+# Crashlytics
+res/values/com_crashlytics_export_strings.xml
