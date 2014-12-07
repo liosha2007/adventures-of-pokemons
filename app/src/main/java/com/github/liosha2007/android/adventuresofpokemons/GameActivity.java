@@ -1,5 +1,8 @@
 package com.github.liosha2007.android.adventuresofpokemons;
 
+import android.os.*;
+import android.view.KeyEvent;
+
 import com.github.liosha2007.android.adventuresofpokemons.manager.ResourcesManager;
 import com.github.liosha2007.android.adventuresofpokemons.manager.SceneManager;
 
@@ -67,5 +70,21 @@ public class GameActivity extends BaseGameActivity {
             }
         }));
         pOnPopulateSceneCallback.onPopulateSceneFinished();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            SceneManager.getInstance().getCurrentScene().onBackKeyPressed();
+        }
+        return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

@@ -1,9 +1,14 @@
 package com.github.liosha2007.android.adventuresofpokemons.manager;
 
+import android.graphics.Color;
+
 import com.github.liosha2007.android.adventuresofpokemons.GameActivity;
 
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.font.StrokeFont;
+import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -36,6 +41,7 @@ public class ResourcesManager {
     public TextureRegion menu_background_region;
     public TextureRegion play_region;
     public TextureRegion options_region;
+    public StrokeFont font;
 
     //---------------------------------------------
     // TEXTURES & TEXTURE REGIONS
@@ -48,6 +54,7 @@ public class ResourcesManager {
     public void loadMenuResources()
     {
         loadMenuGraphics();
+        loadMenuFonts();
         loadMenuAudio();
     }
 
@@ -81,6 +88,15 @@ public class ResourcesManager {
     private void loadMenuAudio()
     {
 
+    }
+
+    private void loadMenuFonts()
+    {
+        FontFactory.setAssetBasePath("font/");
+        final ITexture mainFontTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+        font = FontFactory.createStrokeFromAsset(activity.getFontManager(), mainFontTexture, activity.getAssets(), "font.ttf", 50, true, Color.WHITE, 2, Color.BLACK);
+        font.load();
     }
 
     private void loadGameGraphics()
