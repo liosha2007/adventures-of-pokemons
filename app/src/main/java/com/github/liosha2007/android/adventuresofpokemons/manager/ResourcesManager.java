@@ -7,8 +7,13 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
+import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.debug.Debug;
 
 import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_HEIGHT;
 import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_WIDTH;
@@ -23,8 +28,14 @@ public class ResourcesManager {
     public GameActivity activity;
     public Camera camera;
     public VertexBufferObjectManager vbom;
+
     private BitmapTextureAtlas splashTextureAtlas;
     public TextureRegion splash_region;
+
+    private BuildableBitmapTextureAtlas menuTextureAtlas;
+    public TextureRegion menu_background_region;
+    public TextureRegion play_region;
+    public TextureRegion options_region;
 
     //---------------------------------------------
     // TEXTURES & TEXTURE REGIONS
@@ -49,6 +60,21 @@ public class ResourcesManager {
 
     private void loadMenuGraphics()
     {
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
+        menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
+        menu_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_background.png");
+        play_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "play.png");
+        options_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "options.png");
+
+        try
+        {
+            this.menuTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
+            this.menuTextureAtlas.load();
+        }
+        catch (final ITextureAtlasBuilder.TextureAtlasBuilderException e)
+        {
+            Debug.e(e);
+        }
 
     }
 

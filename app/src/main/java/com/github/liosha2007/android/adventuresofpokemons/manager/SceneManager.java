@@ -1,6 +1,7 @@
 package com.github.liosha2007.android.adventuresofpokemons.manager;
 
 import com.github.liosha2007.android.adventuresofpokemons.base.BaseScene;
+import com.github.liosha2007.android.adventuresofpokemons.scene.MainMenuScene;
 import com.github.liosha2007.android.adventuresofpokemons.scene.SplashScene;
 
 import org.andengine.engine.Engine;
@@ -80,6 +81,14 @@ public class SceneManager {
         ResourcesManager.getInstance().unloadSplashScreen();
         splashScene.disposeScene();
         splashScene = null;
+    }
+
+    public void createMenuScene()
+    {
+        ResourcesManager.getInstance().loadMenuResources();
+        menuScene = new MainMenuScene();
+        setScene(menuScene);
+        disposeSplashScene();
     }
 
     //---------------------------------------------
