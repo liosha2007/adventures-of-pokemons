@@ -3,6 +3,8 @@ package com.github.liosha2007.android.adventuresofpokemons;
 import android.os.*;
 import android.view.KeyEvent;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.github.liosha2007.android.adventuresofpokemons.manager.ResourcesManager;
 import com.github.liosha2007.android.adventuresofpokemons.manager.SceneManager;
 
@@ -20,7 +22,7 @@ import org.andengine.ui.IGameInterface;
 import org.andengine.ui.activity.BaseGameActivity;
 
 /**
- * Created by liosha on 07.12.2014.
+ * @author Aleksey Permyakov (07.12.2014)
  */
 public class GameActivity extends BaseGameActivity {
     public static final int FRAMES_PER_SECOND = 60;
@@ -44,19 +46,19 @@ public class GameActivity extends BaseGameActivity {
     }
 
     @Override
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
         ResourcesManager.prepareManager(mEngine, this, camera, getVertexBufferObjectManager());
         resourcesManager = ResourcesManager.getInstance();
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 
     @Override
-    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
         SceneManager.getInstance().createSplashScene(pOnCreateSceneCallback);
     }
 
     @Override
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
+    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
         mEngine.registerUpdateHandler(new TimerHandler(2f, new ITimerCallback()
         {
             public void onTimePassed(final TimerHandler pTimerHandler)

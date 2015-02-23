@@ -51,47 +51,39 @@ public class ResourcesManager {
     // CLASS LOGIC
     //---------------------------------------------
 
-    public void loadMenuResources()
-    {
+    public void loadMenuResources() {
         loadMenuGraphics();
         loadMenuFonts();
         loadMenuAudio();
     }
 
-    public void loadGameResources()
-    {
+    public void loadGameResources() {
         loadGameGraphics();
         loadGameFonts();
         loadGameAudio();
     }
 
-    private void loadMenuGraphics()
-    {
+    private void loadMenuGraphics() {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
         menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         menu_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_background.png");
         play_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "play.png");
         options_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "options.png");
 
-        try
-        {
+        try {
             this.menuTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
             this.menuTextureAtlas.load();
-        }
-        catch (final ITextureAtlasBuilder.TextureAtlasBuilderException e)
-        {
+        } catch (final ITextureAtlasBuilder.TextureAtlasBuilderException e) {
             Debug.e(e);
         }
 
     }
 
-    private void loadMenuAudio()
-    {
+    private void loadMenuAudio() {
 
     }
 
-    private void loadMenuFonts()
-    {
+    private void loadMenuFonts() {
         FontFactory.setAssetBasePath("font/");
         final ITexture mainFontTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
@@ -99,31 +91,34 @@ public class ResourcesManager {
         font.load();
     }
 
-    private void loadGameGraphics()
-    {
+    public void unloadMenuTextures() {
+        menuTextureAtlas.unload();
+    }
+
+    public void loadMenuTextures() {
+        menuTextureAtlas.load();
+    }
+
+    private void loadGameGraphics() {
 
     }
 
-    private void loadGameFonts()
-    {
+    private void loadGameFonts() {
 
     }
 
-    private void loadGameAudio()
-    {
+    private void loadGameAudio() {
 
     }
 
-    public void loadSplashScreen()
-    {
+    public void loadSplashScreen() {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         splashTextureAtlas = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR);
         splash_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(splashTextureAtlas, activity, "splash.png", 0, 0);
         splashTextureAtlas.load();
     }
 
-    public void unloadSplashScreen()
-    {
+    public void unloadSplashScreen() {
         splashTextureAtlas.unload();
         splash_region = null;
     }
@@ -132,8 +127,7 @@ public class ResourcesManager {
      * We use this method at beginning of game loading, to prepare Resources Manager properly,
      * setting all needed parameters, so we can latter access them from different classes (eg. scenes)
      */
-    public static void prepareManager(Engine engine, GameActivity activity, Camera camera, VertexBufferObjectManager vbom)
-    {
+    public static void prepareManager(Engine engine, GameActivity activity, Camera camera, VertexBufferObjectManager vbom) {
         getInstance().engine = engine;
         getInstance().activity = activity;
         getInstance().camera = camera;
@@ -144,8 +138,7 @@ public class ResourcesManager {
     // GETTERS AND SETTERS
     //---------------------------------------------
 
-    public static ResourcesManager getInstance()
-    {
+    public static ResourcesManager getInstance() {
         return INSTANCE;
     }
 }

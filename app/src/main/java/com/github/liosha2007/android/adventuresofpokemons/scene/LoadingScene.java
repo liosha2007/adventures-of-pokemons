@@ -1,12 +1,11 @@
 package com.github.liosha2007.android.adventuresofpokemons.scene;
 
-import com.github.liosha2007.android.adventuresofpokemons.GameActivity;
 import com.github.liosha2007.android.adventuresofpokemons.base.BaseScene;
 import com.github.liosha2007.android.adventuresofpokemons.manager.SceneManager;
 
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.text.Text;
-import org.andengine.util.color.Color;
+import org.andengine.util.adt.color.Color;
 
 import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_HEIGHT;
 import static com.github.liosha2007.android.adventuresofpokemons.GameActivity.CAMERA_WIDTH;

@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0-rc2'
+        classpath 'com.android.tools.build:gradle:1.0.0'
     }
 }
 
@@ -15,16 +15,29 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.1.1'
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 21
+
+        ndk {
+            moduleName "andengine_shared"
+        }
+    }
+
 	sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs 'src'
-            resources.srcDirs 'src'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+            jni.srcDirs = [] // This needs to be done so that gradle does not know about your jni. There are errors otherwise
+            jniLibs.srcDirs = ['libs']
         }
-
         instrumentTest.setRoot('tests')
     }
 }

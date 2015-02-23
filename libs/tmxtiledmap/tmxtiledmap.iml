@@ -81,7 +81,7 @@
       <excludeFolder url="file://$MODULE_DIR$/target/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/target/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 21 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="andengine" exported="" />
   </component>
