@@ -1,6 +1,7 @@
 package com.github.liosha2007.android.adventuresofpokemons.scene;
 
 import com.badlogic.gdx.math.Vector2;
+import com.github.liosha2007.android.adventuresofpokemons.GameActivity;
 import com.github.liosha2007.android.adventuresofpokemons.base.BaseScene;
 import com.github.liosha2007.android.adventuresofpokemons.manager.SceneManager;
 
@@ -58,7 +59,7 @@ public class GameScene extends BaseScene {
         gameHUD = new HUD();
 
         // CREATE SCORE TEXT
-        scoreText = new Text(20, 20, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
+        scoreText = new Text(125, GameActivity.CAMERA_HEIGHT - 20, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 //        scoreText.setAnchorCenter(0, 0);
         scoreText.setText("Score: 0");
         gameHUD.attachChild(scoreText);

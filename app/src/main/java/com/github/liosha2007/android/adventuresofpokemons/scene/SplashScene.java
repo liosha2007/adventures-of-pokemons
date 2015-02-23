@@ -31,8 +31,8 @@ public class SplashScene extends BaseScene {
 
         splash.setScale(1.5f);
         splash.setPosition(
-                (CAMERA_WIDTH - resourcesManager.splash_region.getWidth()) / 2,
-                (CAMERA_HEIGHT - resourcesManager.splash_region.getHeight()) / 2
+                CAMERA_WIDTH / 2,
+                CAMERA_HEIGHT / 2
         );
         attachChild(splash);
     }

@@ -51,8 +51,10 @@ public class MainMenuScene extends BaseScene implements MenuScene.IOnMenuItemCli
     private void createBackground()
     {
         attachChild(new Sprite(
-                (CAMERA_WIDTH - resourcesManager.menu_background_region.getWidth()) / 2,
-                (CAMERA_HEIGHT - resourcesManager.menu_background_region.getHeight()) / 2,
+                CAMERA_WIDTH / 2,
+                CAMERA_HEIGHT / 2,
+                CAMERA_WIDTH,
+                CAMERA_HEIGHT,
                 resourcesManager.menu_background_region,
                 vbom) {
             @Override
