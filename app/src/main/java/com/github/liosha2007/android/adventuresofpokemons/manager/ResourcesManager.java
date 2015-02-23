@@ -111,6 +111,11 @@ public class ResourcesManager {
 
     }
 
+    public void unloadGameTextures()
+    {
+        // TODO (Since we did not create any textures for game scene yet)
+    }
+
     public void loadSplashScreen() {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         splashTextureAtlas = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR);

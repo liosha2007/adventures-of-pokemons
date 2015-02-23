@@ -34,7 +34,7 @@ public class GameScene extends BaseScene {
     @Override
     public void onBackKeyPressed()
     {
-
+        SceneManager.getInstance().loadMenuScene(engine);
     }
 
     @Override
@@ -46,7 +46,11 @@ public class GameScene extends BaseScene {
     @Override
     public void disposeScene()
     {
+        camera.setHUD(null);
+        camera.setCenter(GameActivity.CAMERA_WIDTH / 2, GameActivity.CAMERA_HEIGHT / 2);
 
+        // TODO code responsible for disposing scene
+        // removing all game scene objects.
     }
 
     private void createBackground()
